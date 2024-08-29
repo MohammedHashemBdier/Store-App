@@ -15,4 +15,26 @@ class Api {
       );
     }
   }
+
+  Future<dynamic> post({
+    required String url,
+    dynamic body,
+    String? token,
+  }) async {
+    Map<String, String> headers = {};
+    if (token != null) {
+      headers.addAll(
+        {
+          "Authorization": "Bearer $token",
+        },
+      );
+    }
+    http.Response response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: body,
+    );
+    Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  }
 }
