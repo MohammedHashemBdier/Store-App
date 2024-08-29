@@ -43,4 +43,37 @@ class Api {
       );
     }
   }
+
+  Future<dynamic> put({
+    required String url,
+    dynamic body,
+    String? token,
+  }) async {
+    Map<String, String> headers = {};
+    if (token != null) {
+      headers.addAll(
+        {
+          "Authorization": "Bearer $token",
+        },
+      );
+    }
+    http.Response response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: body,
+    );
+    headers.addAll(
+      {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception(
+        "There is proplem with status code ${response.statusCode} with body ${jsonDecode(response.body)}",
+      );
+    }
+  }
 }
