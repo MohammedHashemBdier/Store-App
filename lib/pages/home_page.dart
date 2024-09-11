@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:store_app/widgets/custom_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,75 +8,37 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text("New Trend"),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(FontAwesomeIcons.cartPlus),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Center(
-        child: Container(
-          width: 220,
-          height: 130,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 40,
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 0,
-                  offset: const Offset(10, 10)),
-            ],
-          ),
-          child: Card(
-            elevation: 10,
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "HndBag LV",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        r"225$",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          FontAwesomeIcons.solidHeart,
-                          color: Colors.red,
-                          size: 16,
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text("New Trend"),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(FontAwesomeIcons.cartPlus),
+              onPressed: () {},
             ),
-          ),
+          ],
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 65,
+            bottom: 16,
+          ),
+          child: GridView.builder(
+            clipBehavior: Clip.none,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 3 / 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 100,
+            ),
+            itemBuilder: (context, index) {
+              return const CustomCard();
+            },
+          ),
+        ));
   }
 }
