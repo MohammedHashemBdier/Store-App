@@ -12,6 +12,12 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: "ElMessiri",
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xffffffff),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.id: (context) => const HomePage(),
