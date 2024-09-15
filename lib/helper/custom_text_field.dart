@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
-class CustomFormTextField extends StatelessWidget {
-  const CustomFormTextField(
-      {super.key, this.hintText, this.onChanged, required this.obscureText});
+class CustomTextField extends StatelessWidget {
+  const CustomTextField(
+      {super.key,
+      this.hintText,
+      this.onChanged,
+      required this.obscureText,
+      this.inputType});
   final String? hintText;
   final Function(String)? onChanged;
   final bool obscureText;
+  final TextInputType? inputType;
+
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextField(
+      keyboardType: inputType,
       obscureText: obscureText,
-      validator: (data) {
-        if (data!.isEmpty) {
-          return "Value is Empty";
-        }
-        return null;
-      },
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,

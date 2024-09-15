@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
@@ -70,6 +71,7 @@ class Api {
         },
       );
     }
+    debugPrint("URL = $url , Body = $body , Token=$token");
     http.Response response = await http.post(
       Uri.parse(url),
       headers: headers,
@@ -81,7 +83,9 @@ class Api {
       },
     );
     if (response.statusCode == 200) {
+      debugPrint("URL = $url , Body = $body , Token=$token");
       Map<String, dynamic> data = jsonDecode(response.body);
+      debugPrint(data.toString());
       return data;
     } else {
       throw Exception(

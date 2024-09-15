@@ -16,6 +16,7 @@ class CustomCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           UpdateProdectPage.id,
+          arguments: prodect,
         );
       },
       child: Stack(
